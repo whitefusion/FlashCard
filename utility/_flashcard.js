@@ -1,0 +1,1 @@
+export default FLASHCARD_STORAGE_KEY = "Happy New Year"
