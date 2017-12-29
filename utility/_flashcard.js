@@ -3,7 +3,7 @@ export const FLASHCARD_STORAGE_KEY = "Happy New Year"
 
 const data_static = {
   '6madl6jew3vvkjzxg8o9u2':{
-    title:"C++ interview",
+    title:"C++ test",
     id: '6madl6jew3vvkjzxg8o9u2',
     cards: [
       {
@@ -62,4 +62,13 @@ const data_static = {
         }
     ]
   }
+}
+
+const setDefault = () => {
+  AsyncStorage.setItem(FLASHCARD_STORAGE_KEY,JSON.stringify(data_static))
+  return data_static
+}
+
+export const setResult = (res) => {
+  return res ? res : setDefault()
 }
