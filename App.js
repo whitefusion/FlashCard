@@ -45,8 +45,6 @@ export default class App extends React.Component {
         <View style={{flex: 1}}>
           <HeadBar barStyle="default"/>
           <MainTabs />
-          {/* <NewDeck /> */}
-          {/* <DeckList /> */}
         </View>
       </Provider>
     );
