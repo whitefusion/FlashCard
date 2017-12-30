@@ -1,4 +1,4 @@
-import {fetchDeck} from '../utility/api'
+import {fetchDeck,insertDeck} from '../utility/api'
 
 export const ADD_DECK = "ADD_DECK"
 export const REMOVE_DECK = "REMOVE_DECK"
@@ -20,6 +20,13 @@ export const receiveDeck = (deckList)  => (
     type: RECEIVE_DECK,
     deckList 
   }
+)
+
+export const createDeck = (deck) => dispatch => (
+  insertDeck(deck)
+  .then((res) => {
+    dispatch(addDeck(deck))
+  })
 )
 
 export const addDeck = ({title,id}) => (

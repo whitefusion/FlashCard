@@ -5,6 +5,7 @@ const data_static = {
   '6madl6jew3vvkjzxg8o9u2':{
     title:"C++ test",
     id: '6madl6jew3vvkjzxg8o9u2',
+    numCards:5,
     cards: [
       {
         id:'vksms6aos7x6uj2wr9xdpl',
@@ -41,6 +42,7 @@ const data_static = {
   'l35inqgkxld83bcls63ucj':{
     title:"Dice",
     id: 'l35inqgkxld83bcls63ucj',
+    numCards:1,
     cards: [
       {
         id:'0vjsz3zzf477hn0qso9owa',
@@ -53,6 +55,7 @@ const data_static = {
   '0ogpuxwq2e27mi68vutjjg' :{
     title: "Coin",
     id: "0ogpuxwq2e27mi68vutjjg",
+    numCards:1,
     cards: [
         {
           id:'t4ci0vu8iq2guvbmnhk0ru',

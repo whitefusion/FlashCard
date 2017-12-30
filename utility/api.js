@@ -6,3 +6,7 @@ export const fetchDeck = () => {
   .then(setResult)
 }
 
+export const insertDeck = (deck) => {
+  return AsyncStorage.mergeItem(FLASHCARD_STORAGE_KEY,JSON.stringify(deck))
+}
+
