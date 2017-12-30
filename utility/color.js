@@ -1,0 +1,8 @@
+export const red = '#ff3b30'
+export const orange = '#ff9500'
+export const yellow = '#ffcc00'
+export const green = '#4cd964'
+export const teal_blue = '#5ac8fa'
+export const blue = '#007aff'
+export const purple = '#5856d6'
+export const pink = '#ff2d55'
