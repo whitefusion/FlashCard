@@ -29,11 +29,10 @@ export const createDeck = (deck) => dispatch => (
   })
 )
 
-export const addDeck = ({title,id}) => (
+export const addDeck = (deck) => (
   {
     type: ADD_DECK,
-    id,
-    title
+    deck
   }
 )
 
