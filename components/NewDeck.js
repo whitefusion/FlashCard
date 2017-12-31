@@ -15,34 +15,40 @@ class NewDeck extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault()
-    const tempId = generateDeckId()
-    const tempDeck = {}
-    tempDeck[tempId] = {
-      id:tempId,
-      title: this.state.text,
-      numCards: 0,
-      cards: []
+    if(this.state.text){
+      const tempId = generateDeckId()
+      const tempDeck = {}
+      tempDeck[tempId] = {
+        id:tempId,
+        title: this.state.text,
+        numCards: 0,
+        cards: []
+      }
+      this.props.createDeck(tempDeck)
+      this.setState({text: ""})
     }
-    this.props.createDeck(tempDeck)
-    this.setState({text: ""})
   }
   
   render() {
     return (
       <View style={styles.container}>
-      <View style={{alignItems: 'center'}}>
-      <TextInput
-       style={styles.input}
-       value={this.state.text}
-       onChangeText={(text)=>{this.setState({text})}}/>
-       </View>
-      <TouchableOpacity
-       style={styles.addBtn}
-       onPress={this.handleSubmit}>
-        <View>
-          <Text>Submit</Text>
+        <View style={styles.deckContainer}>
+          <Text style={styles.newDeckTitle}>Create a new deck</Text>
         </View>
-      </TouchableOpacity>
+        <View style={styles.inputContainer}>
+          <TextInput
+          style={styles.input}
+          value={this.state.text}
+          onChangeText={(text)=>{this.setState({text})}}/>
+        </View>
+        <View style={styles.addBtnContainer}>
+          <TouchableOpacity
+          onPress={this.handleSubmit}>
+            <View style={styles.addBtn}>
+              <Text style={styles.btnText}>Submit</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
     )
   }
@@ -50,7 +56,23 @@ class NewDeck extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'flex-start'
+    justifyContent: 'center'
+  },
+  deckContainer : {
+    height: 0.1*height,
+    marginBottom: 10,
+    alignItems: 'center',
+    justifyContent: "flex-end",
+    marginTop: 0.2*height,
+    marginBottom: 0.1*height
+  },
+  newDeckTitle :{
+    fontSize: 30,
+    fontWeight: 'bold',
+  },
+  inputContainer: {
+    alignItems: 'center',
+    justifyContent:'center'
   },
   input: {
     height: 40, 
@@ -59,14 +81,21 @@ const styles = StyleSheet.create({
     width: 0.8*width,
     borderRadius: 10
   },
-  addBtn: {
-    width: 80,
-    height: 20,
-    paddingHorizontal: 10,
-    backgroundColor: palette.green,
-    marginTop: 10,
-    marginLeft: 20,
+  addBtnContainer: {
     alignItems: 'center',
+    marginTop: 0.05*height
+  },
+  addBtn: {
+    width: 200,
+    height: 40,
+    borderRadius:10,
+    backgroundColor: palette.teal_blue,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  btnText: {
+    fontSize: 20,
+    color: 'white'
   }
 })
 

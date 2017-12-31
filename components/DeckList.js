@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
-import {Dimensions,Text, View, StyleSheet,FlatList} from 'react-native'
+import {Dimensions,Text, View, StyleSheet,
+        FlatList,TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 import {getDeck} from '../actions'
 import * as palette from '../utility/color'
@@ -25,8 +26,10 @@ class DeckList extends Component {
         keyExtractor={this._keyExtractor}
         renderItem={({item})=>(
           <View style={styles.deckItem}>
-            <Text style={styles.deckTitle}>{item.title}</Text>
-            <Text style={styles.deckText}> {item.numCards} {item.numCards > 1 ? 'questions' : 'question'} </Text>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('DeckDetail',{id:item.id,title:item.title})}>
+              <Text style={styles.deckTitle}>{item.title}</Text>
+              <Text style={styles.deckText}> {item.numCards} {item.numCards > 1 ? 'questions' : 'question'} </Text>
+            </TouchableOpacity>
           </View>
         )}
         />
@@ -39,8 +42,6 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   headerContainer: {
     height: 0.1*height,
-    borderBottomWidth: 2,
-    borderBottomColor: 'black',
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end"
@@ -58,7 +59,7 @@ const styles = StyleSheet.create({
     width: 0.8*width,
     marginBottom:20,
     padding: 10,
-    borderRadius: 10,
+    borderRadius: 5,
     backgroundColor: palette.teal_blue,
   },
   deckTitle : {
