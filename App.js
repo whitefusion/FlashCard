@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, Text, View, 
         StatusBar, Platform} from 'react-native';
 import DeckList from './components/DeckList'
+import DeckDetail from './components/DeckDetail'
 import {createStore,applyMiddleware} from 'redux'
 import {Provider} from 'react-redux'
 import deck from './reducers'
@@ -9,8 +10,10 @@ import thunk from 'redux-thunk'
 import {composeWithDevTools} from 'redux-devtools-extension'
 import {Constants} from 'expo'
 import NewDeck from './components/NewDeck'
-import { TabNavigator } from 'react-navigation'
+import { TabNavigator,StackNavigator } from 'react-navigation'
 import { MaterialIcons, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import AddCard from './components/AddCard'
+import {Quiz} from './components/Quiz'
 
 function HeadBar({...props}){
   return (
@@ -20,7 +23,7 @@ function HeadBar({...props}){
   )
 }
 
-const MainTabs = TabNavigator({
+const Tabs = TabNavigator({
   DeckList : {
     screen: DeckList,
     navigationOptions: {
@@ -34,6 +37,25 @@ const MainTabs = TabNavigator({
       tabBarLabel: "Add",
       tabBarIcon: <MaterialIcons name='add-circle-outline' size={25}/>
     }
+  },
+},  {
+  navigationOptions: {
+    header: null
+  }
+})
+
+const MainNavigator = StackNavigator({
+  Home: {
+    screen: Tabs
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+  },
+  AddCard :{
+    screen: AddCard
+  },
+  Quiz: {
+    screen: Quiz
   }
 })
 
@@ -44,7 +66,8 @@ export default class App extends React.Component {
       <Provider store={store}>
         <View style={{flex: 1}}>
           <HeadBar barStyle="default"/>
-          <MainTabs />
+          <MainNavigator />
+          {/* <Tabs /> */}
         </View>
       </Provider>
     );
