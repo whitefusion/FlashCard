@@ -18,7 +18,7 @@ class DeckList extends Component {
     return (
       <View>
         <View style={styles.headerContainer}>
-        <Text style={styles.header}> Deck List </Text>
+        <Text style={styles.header}>Your Decks </Text>
         </View>
         <View style={styles.deckList}>
         <FlatList 
@@ -26,7 +26,7 @@ class DeckList extends Component {
         keyExtractor={this._keyExtractor}
         renderItem={({item})=>(
           <View style={styles.deckItem}>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate('DeckDetail',{id:item.id,title:item.title})}>
+            <TouchableOpacity onPress={()=>this.props.navigation.navigate('DeckDetail',{id:item.id})}>
               <Text style={styles.deckTitle}>{item.title}</Text>
               <Text style={styles.deckText}> {item.numCards} {item.numCards > 1 ? 'questions' : 'question'} </Text>
             </TouchableOpacity>

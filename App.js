@@ -13,7 +13,7 @@ import NewDeck from './components/NewDeck'
 import { TabNavigator,StackNavigator } from 'react-navigation'
 import { MaterialIcons, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import AddCard from './components/AddCard'
-import {Quiz} from './components/Quiz'
+import Quiz from './components/Quiz'
 
 function HeadBar({...props}){
   return (
