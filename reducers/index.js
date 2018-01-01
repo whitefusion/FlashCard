@@ -23,10 +23,9 @@ export default function deck(state = {},action){
       const id = action.id
       const targetCards = state[parentId]['cards']
       let targetIndex = 0
-      targetDeck.forEach((item,index) => {
+      targetCards.forEach((item,index) => {
           if(item.id === id){
             targetIndex = index
-            break
           }
       })
       const newCards = [...targetCards.slice(0,targetIndex), 
@@ -35,6 +34,7 @@ export default function deck(state = {},action){
         ...state,
         [parentId]: {
           ...state[parentId],
+          numCards: state[parentId]['numCards']-1,
           cards: newCards
         }
       }

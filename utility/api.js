@@ -40,12 +40,12 @@ export const removeCard = (parentId,id) => {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
          .then((res)=> {
            const data = JSON.parse(res)
+           console.log(parentId,id)
            const targetCards = data[parentId]['cards']
            let targetIndex = 0
-           targetDeck.forEach((item,index) => {
+           targetCards.forEach((item,index) => {
                 if(item.id === id){
                   targetIndex = index
-                  break
                 }
            })
            const newCards = [...targetCards.slice(0,targetIndex), 
@@ -54,6 +54,7 @@ export const removeCard = (parentId,id) => {
              ...data,
              [parentId]: {
                ...data[parentId],
+               numCards: data[parentId]['numCards']-1,
                cards: newCards
              }
            }
