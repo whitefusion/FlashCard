@@ -12,6 +12,14 @@ export const insertDeck = (deck) => {
         : AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
 }
 
+export const fetchDeckById = (id) => {
+  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+  .then((res)=>{
+    const data = JSON.parse(res)
+    return data[id]
+  })
+}
+
 export const insertCard = (card) => {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
          .then((res)=>{

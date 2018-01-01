@@ -69,7 +69,7 @@ const data_static = {
 
 const setDefault = () => {
   AsyncStorage.setItem(FLASHCARD_STORAGE_KEY,JSON.stringify(data_static))
-  return data_static
+  return JSON.stringify(data_static)
 }
 
 export const setResult = (res) => {
