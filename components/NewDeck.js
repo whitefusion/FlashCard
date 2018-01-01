@@ -3,7 +3,7 @@ import {StyleSheet, View,Text, Dimensions,
       TextInput, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 import {createDeck} from '../actions'
-import {generateDeckId} from '../utility/utility.js'
+import {generateId} from '../utility/utility.js'
 import * as palette from '../utility/color'
 
 let {height, width} = Dimensions.get('window')
@@ -16,7 +16,7 @@ class NewDeck extends Component {
   handleSubmit = (evt) => {
     evt.preventDefault()
     if(this.state.text){
-      const tempId = generateDeckId()
+      const tempId = generateId()
       const tempDeck = {}
       tempDeck[tempId] = {
         id:tempId,
