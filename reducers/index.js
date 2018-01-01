@@ -18,6 +18,26 @@ export default function deck(state = {},action){
           cards: [...state[card.parentId]['cards'],card]
         }
       }
+    case ACT.REMOVE_CARD:
+      const parentId = action.parentId
+      const id = action.id
+      const targetCards = state[parentId]['cards']
+      let targetIndex = 0
+      targetDeck.forEach((item,index) => {
+          if(item.id === id){
+            targetIndex = index
+            break
+          }
+      })
+      const newCards = [...targetCards.slice(0,targetIndex), 
+                        ...targetCards.slice(targetIndex+1)]
+      return {
+        ...state,
+        [parentId]: {
+          ...state[parentId],
+          cards: newCards
+        }
+      }
     default:
       return state
   }
