@@ -1,14 +1,23 @@
 import * as ACT from "../actions"
 
 export default function deck(state = {},action){
+  console.log(action.type)
   switch(action.type){
     case ACT.RECEIVE_DECK:
-      console.log('receive deck')
       const deckList = JSON.parse(action.deckList)
       return {...state,...deckList}
     case ACT.ADD_DECK:
-      console.log('add deck')
       return {...state,...action.deck}
+    case ACT.ADD_CARD:
+      const card = action.card
+      return {
+        ...state,
+        [card.parentId]:{
+          ...state[card.parentId],
+          numCards: state[card.parentId]['numCards']+1,
+          cards: [...state[card.parentId]['cards'],card]
+        }
+      }
     default:
       return state
   }
