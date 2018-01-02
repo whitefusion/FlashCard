@@ -105,7 +105,7 @@ const styles = StyleSheet.create({
     borderRadius:5,
     backgroundColor: palette.blue,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   btnText: {
     fontSize: 20,

@@ -59,16 +59,18 @@ const MainNavigator = StackNavigator({
       headerStyle: {
         marginTop: -20
       },
-      cardStyle:{
-        backgroundColor: 'white'
-      }
     }
   },
   AddCard :{
     screen: AddCard
   },
   Quiz: {
-    screen: Quiz
+    screen: Quiz,
+    navigationOptions: {
+      headerStyle: {
+        marginTop: -20
+      },
+    }
   }
 },{
   headerMode: 'float',

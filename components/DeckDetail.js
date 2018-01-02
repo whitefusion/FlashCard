@@ -8,7 +8,7 @@ import Swipeout from 'react-native-swipeout'
 import {Entypo,Feather} from '@expo/vector-icons'
 import * as palette from '../utility/color'
 
-const {width,height}  = Dimensions.get('window')
+const {height,width}  = Dimensions.get('window')
 
 class DeckDetail extends Component {
 
@@ -73,9 +73,14 @@ class DeckDetail extends Component {
           keyExtractor={_keyExtractor}
           extraData={this.state}
           renderItem={ ({item,index}) => (
-                <View style={styles.qListContainer}>
-                  <Text>{index+1}. {item.q}</Text>
-                  <View>
+                <View style={styles.qItemContainer}>
+                  <View style={styles.qIndexContainer}>
+                    <Text>{index+1}. </Text>
+                  </View>
+                  <View style={styles.qTextContainer}>
+                    <Text style={styles.qText}>{item.q}</Text>
+                  </View>
+                  <View style={styles.deleteBtnContainer}>
                   {this.state.deleteBtn?
                     (<View>
                       <TouchableOpacity onPress={()=>{this.props.deleteCard(item.parentId,item.id)}}>
@@ -101,12 +106,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     marginTop: 20,
     borderBottomWidth: 1,
-    borderBottomColor: '#c4c4c4',
-    marginBottom: 15
-  },
-  qListContainer: {
-    flexDirection: 'row',
-    height: 40
+    borderBottomColor: '#dddddd',
+    marginBottom: 10
   },
   deckTextContainer: {
     marginLeft: 10,
@@ -126,7 +127,9 @@ const styles = StyleSheet.create({
   },
   btnContainer:{
     flexDirection: 'row',
-    justifyContent: 'space-around'
+    justifyContent: 'space-around',
+    borderBottomWidth: 1,
+    borderBottomColor: "#dddddd",
   },
   inBtn:{
     flexDirection: 'row',
@@ -140,11 +143,35 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     width: 135,
     height: 30,
-    backgroundColor: '#e3edfc'
+    backgroundColor: '#e3edfc',
+    marginBottom: 10
   },
   inBtnText :{
     color: palette.blue,
     marginLeft: 10
+  },
+  qItemContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    height: 60,
+    borderBottomWidth: 1,
+    borderBottomColor: '#dddddd',
+    paddingVertical: 10,
+  },
+  deleteBtnContainer:{
+    width: 0.1*width,
+    marginRight: 5,
+  },
+  qIndexContainer: {
+    width: 0.1*width,
+    alignItems: 'flex-end'
+  },
+  qTextContainer: {
+    width: 0.8*width,
+  },
+  qText: {
+    marginLeft: 5,
   }
 })
 
