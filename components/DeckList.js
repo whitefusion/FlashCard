@@ -1,22 +1,30 @@
 import React,{Component} from 'react'
 import {Dimensions,Text, View, StyleSheet,
-        FlatList,TouchableOpacity} from 'react-native'
+        FlatList,TouchableOpacity,Animated} from 'react-native'
 import {connect} from 'react-redux'
-import {getDeck} from '../actions'
+import {getDeck, deleteDeck} from '../actions'
 import * as palette from '../utility/color'
+import {Entypo} from '@expo/vector-icons'
+
 let {height, width} = Dimensions.get('window')
 
 class DeckList extends Component {
+  state = {
+  }
+
   componentDidMount(){
     this.props.getDeck()
   }
 
   _keyExtractor = (item, index) => item.id;
 
+  handlePress = (item) => {
+    this.props.navigation.navigate('DeckDetail',{id:item.id})
+  }
   render() {
     console.log(this.props.deck)
     return (
-      <View>
+      <View >
         <View style={styles.headerContainer}>
         <Text style={styles.header}>Your Decks </Text>
         </View>
@@ -26,10 +34,11 @@ class DeckList extends Component {
         keyExtractor={this._keyExtractor}
         renderItem={({item})=>(
           <View style={styles.deckItem}>
-            <TouchableOpacity onPress={()=>this.props.navigation.navigate('DeckDetail',{id:item.id})}>
-              <Text style={styles.deckTitle}>{item.title}</Text>
-              <Text style={styles.deckText}> {item.numCards} {item.numCards > 1 ? 'questions' : 'question'} </Text>
+            <TouchableOpacity onPress={this.handlePress.bind(this,item)}>
+              <Text style={styles.deckTitle}>{item.title} </Text>
+              <Text style={styles.deckText}> {item.numCards} {item.numCards > 1 ? 'cards' : 'card'} </Text>
             </TouchableOpacity>
+            <TouchableOpacity onPress={()=>{this.props.deleteDeck(item.id)}}><Entypo name="circle-with-minus"></Entypo></TouchableOpacity>
           </View>
         )}
         />
@@ -73,4 +82,4 @@ const styles = StyleSheet.create({
   }
 })
 
-export default connect((deck)=>({deck}),{getDeck})(DeckList)
+export default connect((deck)=>({deck}),{getDeck,deleteDeck})(DeckList)

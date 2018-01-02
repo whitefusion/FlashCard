@@ -40,7 +40,6 @@ export const removeCard = (parentId,id) => {
   return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
          .then((res)=> {
            const data = JSON.parse(res)
-           console.log(parentId,id)
            const targetCards = data[parentId]['cards']
            let targetIndex = 0
            targetCards.forEach((item,index) => {
@@ -60,5 +59,15 @@ export const removeCard = (parentId,id) => {
            }
 
            AsyncStorage.setItem(FLASHCARD_STORAGE_KEY,JSON.stringify(newDeckList))
+         })
+}
+
+export const removeDeck = (id) => {
+  return AsyncStorage.getItem(FLASHCARD_STORAGE_KEY)
+         .then((res)=>{
+           const data = JSON.parse(res)
+           data[id]= undefined
+           delete data[id]
+           AsyncStorage.setItem(FLASHCARD_STORAGE_KEY,JSON.stringify(data))
          })
 }

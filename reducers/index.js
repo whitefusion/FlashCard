@@ -38,6 +38,11 @@ export default function deck(state = {},action){
           cards: newCards
         }
       }
+    case ACT.REMOVE_DECK:
+      const tempState = {...state}
+      tempState[action.id] = undefined
+      delete tempState[action.id]
+      return tempState
     default:
       return state
   }
