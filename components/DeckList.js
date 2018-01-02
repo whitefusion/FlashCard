@@ -1,15 +1,16 @@
 import React,{Component} from 'react'
-import {Dimensions,Text, View, StyleSheet,
-        FlatList,TouchableOpacity,Animated} from 'react-native'
+import {Dimensions,Text, View, StyleSheet,TouchableWithoutFeedback,
+        FlatList,TouchableOpacity,Animated, TouchableHighlight} from 'react-native'
 import {connect} from 'react-redux'
 import {getDeck, deleteDeck} from '../actions'
 import * as palette from '../utility/color'
-import {Entypo} from '@expo/vector-icons'
+import {Entypo,MaterialIcons} from '@expo/vector-icons'
 
 let {height, width} = Dimensions.get('window')
 
 class DeckList extends Component {
   state = {
+    deleteBtn: false
   }
 
   componentDidMount(){
@@ -21,12 +22,22 @@ class DeckList extends Component {
   handlePress = (item) => {
     this.props.navigation.navigate('DeckDetail',{id:item.id})
   }
+
+  toggleManage = () => {
+    this.setState({deleteBtn: !this.state.deleteBtn})
+  }
+
   render() {
     console.log(this.props.deck)
     return (
       <View >
         <View style={styles.headerContainer}>
-        <Text style={styles.header}>Your Decks </Text>
+          <Text style={styles.header}>Your Decks </Text>
+          <TouchableWithoutFeedback onPress={this.toggleManage}>
+            <View style={styles.manageContainer}>
+              <Text style={styles.manage}> Manage </Text>
+            </View>
+          </TouchableWithoutFeedback>
         </View>
         <View style={styles.deckList}>
         <FlatList 
@@ -34,11 +45,29 @@ class DeckList extends Component {
         keyExtractor={this._keyExtractor}
         renderItem={({item})=>(
           <View style={styles.deckItem}>
+            {this.state.deleteBtn?
+              (
+              <View style={styles.deleteBtnContainer}>
+                <TouchableOpacity onPress={()=>{this.props.deleteDeck(item.id)}}>
+                  <Entypo name="circle-with-minus" color='red' size={24}></Entypo>
+                </TouchableOpacity>
+              </View>
+              )
+              : (<View style={styles.deleteBtnContainer}></View>)
+            }
+            <View>
             <TouchableOpacity onPress={this.handlePress.bind(this,item)}>
-              <Text style={styles.deckTitle}>{item.title} </Text>
-              <Text style={styles.deckText}> {item.numCards} {item.numCards > 1 ? 'cards' : 'card'} </Text>
+              <View style={styles.itemContainer}>
+                <View style={styles.deckTitleContainer}>
+                  <Text style={styles.deckTitle}>{item.title} </Text>
+                  <Text style={styles.deckText}>{item.numCards} {item.numCards > 1 ? 'cards' : 'card'} </Text>
+                </View>
+                <View style={styles.arrowContainer}>
+                  <MaterialIcons name="keyboard-arrow-right" color={palette.blue} size={30}></MaterialIcons>
+                </View>
+              </View>
             </TouchableOpacity>
-            <TouchableOpacity onPress={()=>{this.props.deleteDeck(item.id)}}><Entypo name="circle-with-minus"></Entypo></TouchableOpacity>
+            </View>
           </View>
         )}
         />
@@ -51,34 +80,59 @@ class DeckList extends Component {
 const styles = StyleSheet.create({
   headerContainer: {
     height: 0.1*height,
-    marginBottom: 10,
-    alignItems: 'center',
-    justifyContent: "flex-end"
+    flexDirection: 'row',
+    marginTop: 0.05*height,
+    marginLeft: 10,
+    justifyContent: 'space-between',
+    alignItems: 'flex-end'
+  },
+  manageContainer: {
+    marginRight: 15,
+    marginBottom: 6
+  },
+  manage:{
+    color: palette.blue
   },
   header:{
     fontSize: 30,
     fontWeight: 'bold',
   },
+  arrowContainer: {
+    marginTop: 7,
+    marginRight:-20
+  },
+  deleteBtnContainer: {
+    alignItems: 'center',
+    justifyContent:'center',
+    width: 0.1*width
+  },
   deckList : {
     marginTop: 20,
-    alignItems: 'center'
+    backgroundColor: 'white'
   },
   deckItem : {
-    height: 0.1*height,
-    width: 0.8*width,
-    marginBottom:20,
-    padding: 10,
-    borderRadius: 5,
-    backgroundColor: palette.teal_blue,
+    flexDirection: 'row',
+    width: width,
+    padding: 0,
+    borderBottomColor:'#c4c4c4',
+    borderBottomWidth: 0.8,
+    paddingVertical: 8,
+  },
+  itemContainer:{
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: 0.8*width
+  },
+  deckTitleContainer: {
   },
   deckTitle : {
-    color: 'white',
+    color: 'black',
     fontSize: 20,
-    fontWeight: '800'
+    fontWeight: '600',
   },
   deckText: {
-    fontWeight: '600',
-    color: 'white'
+    fontWeight: '300',
+    color: 'black'
   }
 })
 
