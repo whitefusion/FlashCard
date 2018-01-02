@@ -3,7 +3,7 @@ import {StyleSheet, View,Text, Dimensions,
       TextInput, TouchableOpacity} from 'react-native'
 import {connect} from 'react-redux'
 import {createDeck} from '../actions'
-import {generateId} from '../utility/utility.js'
+import {generateId} from '../utility/utility'
 import * as palette from '../utility/color'
 
 let {height, width} = Dimensions.get('window')
@@ -17,6 +17,7 @@ class NewDeck extends Component {
     evt.preventDefault()
     if(this.state.text){
       const tempId = generateId()
+      console.log(tempId)
       const tempDeck = {}
       tempDeck[tempId] = {
         id:tempId,
@@ -36,6 +37,9 @@ class NewDeck extends Component {
           <Text style={styles.newDeckTitle}>Create a new deck</Text>
         </View>
         <View style={styles.inputContainer}>
+          <View style={styles.deckTitleContainer}>
+          <Text style={styles.deckTitle}> Deck Title: </Text>
+          </View>
           <TextInput
           style={styles.input}
           value={this.state.text}
@@ -63,7 +67,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
-    marginTop: 0.2*height,
+    marginTop: 0.15*height,
     marginBottom: 0.1*height
   },
   newDeckTitle :{
@@ -74,12 +78,22 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent:'center'
   },
+  deckTitleContainer: {
+    width: width,
+    marginBottom: 5
+  },
+  deckTitle: {
+    fontSize: 12,
+    color: '#777777',
+    fontWeight: '800',
+    marginLeft: 0.1*width
+  },
   input: {
     height: 40, 
     borderColor: 'gray', 
     borderWidth: 1,
     width: 0.8*width,
-    borderRadius: 10
+    borderRadius: 5
   },
   addBtnContainer: {
     alignItems: 'center',
@@ -88,8 +102,8 @@ const styles = StyleSheet.create({
   addBtn: {
     width: 200,
     height: 40,
-    borderRadius:10,
-    backgroundColor: palette.teal_blue,
+    borderRadius:5,
+    backgroundColor: palette.blue,
     alignItems: 'center',
     justifyContent: 'center'
   },
