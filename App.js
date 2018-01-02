@@ -14,7 +14,7 @@ import { TabNavigator,StackNavigator } from 'react-navigation'
 import { MaterialIcons, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
-
+import {setLocalNotification} from './utility/utility'
 function HeadBar({...props}){
   return (
     <View style={{height:Constants.statusBarHeight}}>
@@ -60,6 +60,9 @@ const MainNavigator = StackNavigator({
 })
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification()
+  }
   render() {
     const store = createStore(deck,composeWithDevTools(applyMiddleware(thunk)))
     return (

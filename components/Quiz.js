@@ -4,6 +4,7 @@ import {View , Text, TouchableOpactiy,
 import {connect} from 'react-redux'
 import TextButton from './TextButton'
 import {Entypo} from '@expo/vector-icons'
+import {setLocalNotification, clearLocalNotification} from '../utility/utility'
 
 class Quiz extends Component {
   id = this.props.navigation.state.params.id  
@@ -23,7 +24,10 @@ class Quiz extends Component {
     const _keyExtractor = (item, index) => item.id
     const qList = this.props.deckList[this.id]['cards']
     const nCards = this.props.deckList[this.id]['numCards']
-
+    if(this.state.curr === nCards) {
+      clearLocalNotification()
+      .then(setLocalNotification())
+    }
     return (
       <View>
         {
