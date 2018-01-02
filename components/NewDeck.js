@@ -67,8 +67,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
-    marginTop: 0.15*height,
-    marginBottom: 0.1*height
+    marginTop: 0.1*height,
+    marginBottom: 0.07*height
   },
   newDeckTitle :{
     fontSize: 30,

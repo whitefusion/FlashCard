@@ -55,12 +55,29 @@ const MainNavigator = StackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
+    navigationOptions: {
+      headerStyle: {
+        marginTop: -20
+      },
+      cardStyle:{
+        backgroundColor: 'white'
+      }
+    }
   },
   AddCard :{
     screen: AddCard
   },
   Quiz: {
     screen: Quiz
+  }
+},{
+  headerMode: 'float',
+  cardStyle: {
+    paddingTop: 0,
+    marginTop: 0,
+  },
+  navigationOptions: {
+    paddingTop: 0,
   }
 })
 
@@ -75,7 +92,6 @@ export default class App extends React.Component {
         <View style={{flex: 1}}>
           <HeadBar barStyle="default"/>
           <MainNavigator />
-          {/* <Tabs /> */}
         </View>
       </Provider>
     );
