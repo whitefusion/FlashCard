@@ -1,7 +1,7 @@
 import {AsyncStorage} from "react-native"
 import {Notifications, Permissions} from 'expo'
 
-export const generateId = () => (Math.random().toString(36))
+export const generateId = () => (Math.random().toString(36).substr(2, 32))
 export const partial = (fn, ...args) => fn.bind(null,...args)
 
 export const NOTIFICATION_KEY = "FlashCard:notification"
@@ -13,7 +13,7 @@ export function clearLocalNotification () {
 
 function createNotification () {
   return {
-    title :' bring it up ! ',
+    title :'bring it up ! ',
     body: 'dont forget to take a quiz today ! ',
     ios : {
       sound: true

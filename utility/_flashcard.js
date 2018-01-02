@@ -1,4 +1,5 @@
 import {AsyncStorage} from "react-native"
+
 export const FLASHCARD_STORAGE_KEY = "Happy New Year"
 
 const data_static = {
@@ -75,3 +76,4 @@ const setDefault = () => {
 export const setResult = (res) => {
   return res ? res : setDefault()
 }
+
