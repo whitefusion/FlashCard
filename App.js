@@ -11,10 +11,12 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 import {Constants} from 'expo'
 import NewDeck from './components/NewDeck'
 import { TabNavigator,StackNavigator } from 'react-navigation'
-import { MaterialIcons, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons'
+import { MaterialIcons, Ionicons, MaterialCommunityIcons, Entypo} from '@expo/vector-icons'
 import AddCard from './components/AddCard'
 import Quiz from './components/Quiz'
 import {setLocalNotification} from './utility/utility'
+import * as palette from './utility/color'
+
 function HeadBar({...props}){
   return (
     <View style={{height:Constants.statusBarHeight}}>
@@ -28,19 +30,22 @@ const Tabs = TabNavigator({
     screen: DeckList,
     navigationOptions: {
       tabBarLabel: "Decks",
-      tabBarIcon: <MaterialCommunityIcons name='cards-outline' size={25}/>
+      tabBarIcon: ({tintColor}) => <MaterialCommunityIcons name='cards-outline' color={tintColor} size={25}/>
     }
   },
   NewDeck: {
     screen: NewDeck,
     navigationOptions : {
       tabBarLabel: "Add",
-      tabBarIcon: <MaterialIcons name='add-circle-outline' size={25}/>
+      tabBarIcon: ({tintColor}) => <MaterialIcons name='add-circle-outline' color={tintColor} size={25}/>
     }
   },
 },  {
   navigationOptions: {
     header: null
+  },
+  tabBarOptions: {
+    activeTintColor: palette.blue,
   }
 })
 
