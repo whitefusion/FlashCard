@@ -62,7 +62,12 @@ const MainNavigator = StackNavigator({
     }
   },
   AddCard :{
-    screen: AddCard
+    screen: AddCard,
+    navigationOptions: {
+      headerStyle: {
+        marginTop: -20
+      },
+    }
   },
   Quiz: {
     screen: Quiz,

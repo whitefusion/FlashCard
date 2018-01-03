@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
-import {TextInput, View,StyleSheet,
+import {TextInput, View,StyleSheet, KeyboardAvoidingView,
         TouchableOpacity, Text,Dimensions} from 'react-native'
 import TextButton from './TextButton'
 import {connect} from 'react-redux'
 import {generateId} from '../utility/utility.js'
 import {createCard} from '../actions'
+import * as palette from '../utility/color'
 
 const {width,height} = Dimensions.get('window')
 
@@ -34,9 +35,10 @@ class AddCard extends Component {
   render() {
     const title = this.props.navigation.state.params.title
     return (
-      <View>
+      <View style={styles.window}>
+       <KeyboardAvoidingView behavior="padding" style={styles.avoidView}>
         <View style={styles.createCardContainer}>
-          <Text style={styles.createCardTitle}>Add a new card to {title}</Text>
+          <Text style={styles.createCardTitle}>Add a card to {title}</Text>
         </View>
         <View style={styles.inputContainer}>
           <View style={styles.inputType}>
@@ -54,14 +56,22 @@ class AddCard extends Component {
           style={styles.input}
           onChangeText={(text)=>{this.setState({a:text})}}/>
         </View>
-        <View>
-          <TextButton onPress={this.handleSubmit}> Submit </TextButton>
+        <View style={styles.btnContainer}>
+          <TouchableOpacity onPress={this.handleSubmit} style={styles.submitBtn}>
+            <Text style={styles.btnText}> Submit </Text>
+          </TouchableOpacity>
         </View>
+        </KeyboardAvoidingView>
       </View>
     )
   }
 }
 const styles= StyleSheet.create({
+  window: {
+    backgroundColor: 'white',
+    height: height,
+    width: width,
+  },
   inputContainer:{
     alignItems: 'center'
   },
@@ -83,13 +93,31 @@ const styles= StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
-    marginTop: 0.2*height,
-    marginBottom: 0.1*height
+    marginTop: 0.03*height,
+    marginBottom: 0.05*height
   },
   createCardTitle :{
     fontSize: 30,
     fontWeight: 'bold',
   },
+  submitBtn: {
+    width: 150,
+    backgroundColor: palette.blue,
+    borderRadius:3,
+    alignItems: 'center',
+    paddingVertical: 8
+  },
+  btnText: {
+    color:'white',
+    fontSize: 16
+  },
+  btnContainer: {
+    alignItems:'center',
+    marginTop: 15
+  },
+  avoidView: {  
+    paddingBottom: 200
+  }
 })
 
 export default connect((state)=>({deckList:state}),{createCard})(AddCard)

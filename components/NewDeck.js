@@ -60,15 +60,17 @@ class NewDeck extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center'
+    justifyContent: 'center',
+    backgroundColor: 'white',
+    flex: 1
   },
   deckContainer : {
     height: 0.1*height,
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
-    marginTop: 0.1*height,
-    marginBottom: 0.07*height
+    marginBottom: 0.07*height,
+    marginTop: -0.1*height
   },
   newDeckTitle :{
     fontSize: 30,
@@ -100,15 +102,15 @@ const styles = StyleSheet.create({
     marginTop: 0.05*height
   },
   addBtn: {
-    width: 200,
-    height: 40,
+    width: 160,
+    height: 35,
     borderRadius:5,
     backgroundColor: palette.blue,
     alignItems: 'center',
     justifyContent: 'center',
   },
   btnText: {
-    fontSize: 20,
+    fontSize: 16,
     color: 'white'
   }
 })
