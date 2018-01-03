@@ -45,7 +45,7 @@ const Tabs = TabNavigator({
     header: null
   },
   tabBarOptions: {
-    activeTintColor: palette.blue,
+    activeTintColor: Platform.OS === "ios" ? palette.blue : 'white',
   }
 })
 
@@ -55,7 +55,8 @@ const MainNavigator = StackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
-    navigationOptions: ({navigation}) => ({
+    navigationOptions: ({navigation,header}) => ({
+      header: Platform.OS === 'ios' ? header : null,
       headerStyle: {
         marginTop: -20
       },
@@ -64,19 +65,21 @@ const MainNavigator = StackNavigator({
   },
   AddCard :{
     screen: AddCard,
-    navigationOptions: {
+    navigationOptions: ({header}) => ({
       headerStyle: {
         marginTop: -20
       },
-    }
+      header: Platform.OS === 'ios' ? header : null,
+    })
   },
   Quiz: {
     screen: Quiz,
-    navigationOptions: {
+    navigationOptions:({header}) => ({
       headerStyle: {
         marginTop: -20
       },
-    }
+      header: Platform.OS === 'ios' ? header : null,
+    })
   }
 },{
   headerMode: 'float',

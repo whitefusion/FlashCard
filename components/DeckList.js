@@ -1,10 +1,11 @@
 import React,{Component} from 'react'
 import {Dimensions,Text, View, StyleSheet,TouchableWithoutFeedback,
-        FlatList,TouchableOpacity,Animated, TouchableHighlight} from 'react-native'
+        FlatList,TouchableOpacity,Animated, TouchableHighlight, Platform} from 'react-native'
 import {connect} from 'react-redux'
 import {getDeck, deleteDeck} from '../actions'
 import * as palette from '../utility/color'
-import {Entypo,MaterialIcons} from '@expo/vector-icons'
+import {Entypo,MaterialIcons,SimpleLineIcons} from '@expo/vector-icons'
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 let {height, width} = Dimensions.get('window')
 
@@ -63,7 +64,12 @@ class DeckList extends Component {
                   <Text style={styles.deckText}>{item.numCards} {item.numCards > 1 ? 'cards' : 'card'} </Text>
                 </View>
                 <View style={styles.arrowContainer}>
-                  <MaterialIcons name="keyboard-arrow-right" color={palette.blue} size={30}></MaterialIcons>
+                  {
+                    Platform.OS === 'ios' ?
+                    <SimpleLineIcons name="arrow-right" color={palette.blue} size={20}></SimpleLineIcons> :
+                    <Ionicons name="md-arrow-forward" color={palette.blue} size={20} />
+                  }
+                  
                 </View>
               </View>
             </TouchableOpacity>

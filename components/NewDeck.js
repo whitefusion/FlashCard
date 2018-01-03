@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
-import {StyleSheet, View,Text, Dimensions,
-      TextInput, TouchableOpacity} from 'react-native'
+import {StyleSheet, View,Text, Dimensions,KeyboardAvoidingView,
+      TextInput, TouchableOpacity, Platform} from 'react-native'
 import {connect} from 'react-redux'
 import {createDeck} from '../actions'
 import {generateId} from '../utility/utility'
@@ -32,7 +32,7 @@ class NewDeck extends Component {
   
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView behavior='padding' style={styles.container}>
         <View style={styles.deckContainer}>
           <Text style={styles.newDeckTitle}>Create a new deck</Text>
         </View>
@@ -53,7 +53,7 @@ class NewDeck extends Component {
             </View>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     )
   }
 }
@@ -66,11 +66,10 @@ const styles = StyleSheet.create({
   },
   deckContainer : {
     height: 0.1*height,
-    marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
     marginBottom: 0.07*height,
-    marginTop: -0.1*height
+    marginTop: -0.2*height
   },
   newDeckTitle :{
     fontSize: 30,
@@ -93,7 +92,7 @@ const styles = StyleSheet.create({
   input: {
     height: 40, 
     borderColor: 'gray', 
-    borderWidth: 1,
+    borderWidth: Platform.OS==="ios" ?  1 : 0,
     width: 0.8*width,
     borderRadius: 5
   },

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {TextInput, View,StyleSheet, KeyboardAvoidingView,
-        TouchableOpacity, Text,Dimensions} from 'react-native'
+        TouchableOpacity, Text,Dimensions,Platform} from 'react-native'
 import TextButton from './TextButton'
 import {connect} from 'react-redux'
 import {generateId} from '../utility/utility.js'
@@ -35,8 +35,7 @@ class AddCard extends Component {
   render() {
     const title = this.props.navigation.state.params.title
     return (
-      <View style={styles.window}>
-       <KeyboardAvoidingView behavior="padding" style={styles.avoidView}>
+       <KeyboardAvoidingView behavior="padding" style={styles.window}>
         <View style={styles.createCardContainer}>
           <Text style={styles.createCardTitle}>Add a card to {title}</Text>
         </View>
@@ -62,15 +61,13 @@ class AddCard extends Component {
           </TouchableOpacity>
         </View>
         </KeyboardAvoidingView>
-      </View>
     )
   }
 }
 const styles= StyleSheet.create({
   window: {
     backgroundColor: 'white',
-    height: height,
-    width: width,
+    flex: 1
   },
   inputContainer:{
     alignItems: 'center'
@@ -78,7 +75,7 @@ const styles= StyleSheet.create({
   input: {
     height: 40, 
     borderColor: 'gray', 
-    borderWidth: 1,
+    borderWidth: Platform.OS==="ios" ?  1 : 0,
     width: 0.8*width,
     borderRadius: 3,
     alignItems: 'center',
@@ -93,7 +90,7 @@ const styles= StyleSheet.create({
     marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
-    marginTop: 0.03*height,
+    marginTop: 0.1*height,
     marginBottom: 0.05*height
   },
   createCardTitle :{
@@ -115,9 +112,6 @@ const styles= StyleSheet.create({
     alignItems:'center',
     marginTop: 15
   },
-  avoidView: {  
-    paddingBottom: 200
-  }
 })
 
 export default connect((state)=>({deckList:state}),{createCard})(AddCard)

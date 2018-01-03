@@ -115,9 +115,9 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginTop:-10,
     shadowColor:'black',
-    shadowRadius: 5,
-    shadowOffset: {width: 3,height:3 },
-    shadowOpacity: 0.5,
+    shadowRadius: 3,
+    shadowOffset: {width: 0,height:0 },
+    shadowOpacity: 0.4,
 
   },
   header: {

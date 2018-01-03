@@ -104,17 +104,17 @@ const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
     borderBottomWidth: 1,
     borderBottomColor: '#dddddd',
-    marginBottom: 10
+    marginBottom: 10,
+    marginTop: Platform.OS === "ios" ? 0.05*height : 0.15*height
   },
   deckTextContainer: {
     marginLeft: 10,
-    marginBottom: 15
+    marginBottom: 15,
   },
   trashContainer: {
-    marginTop: 0.03*height,
+    marginTop:  0.03*height,
     marginRight: 15
   },
   deckName:{
