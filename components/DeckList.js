@@ -20,7 +20,7 @@ class DeckList extends Component {
   _keyExtractor = (item, index) => item.id;
 
   handlePress = (item) => {
-    this.props.navigation.navigate('DeckDetail',{id:item.id})
+    this.props.navigation.navigate('DeckDetail',{id:item.id,title:item.title})
   }
 
   toggleManage = () => {

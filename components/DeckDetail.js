@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import {View,Text,TouchableOpacity, TouchableHighlight, Alert,
+import {View,Text,TouchableOpacity, TouchableWithoutFeedback, Alert,
         StyleSheet,Platform, Separator,FlatList,Dimensions} from 'react-native'
 import TextButton from './TextButton'
 import {connect} from 'react-redux'
@@ -44,9 +44,9 @@ class DeckDetail extends Component {
             <Text style={styles.cardNum}> {numCards} cards </Text>
           </View>
           <View style={styles.trashContainer}>
-            <TouchableOpacity onPress={this.toggleDeleteBtn}>
+            <TouchableWithoutFeedback onPress={this.toggleDeleteBtn}>
               <Entypo name="trash" color={palette.blue} size={20} />
-            </TouchableOpacity>
+            </TouchableWithoutFeedback>
           </View>
         </View>
         <View style={styles.btnContainer}>
