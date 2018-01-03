@@ -55,11 +55,12 @@ const MainNavigator = StackNavigator({
   },
   DeckDetail: {
     screen: DeckDetail,
-    navigationOptions: {
+    navigationOptions: ({navigation}) => ({
       headerStyle: {
         marginTop: -20
       },
-    }
+      headerTitle: `${navigation.state.params.title}` ,
+    })
   },
   AddCard :{
     screen: AddCard,
