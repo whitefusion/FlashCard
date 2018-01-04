@@ -57,7 +57,7 @@ class DeckList extends Component {
               : (<View style={styles.deleteBtnContainer}></View>)
             }
             <View>
-            <TouchableOpacity onPress={this.handlePress.bind(this,item)}>
+            <TouchableOpacity onPress={()=>this.handlePress(item)}>
               <View style={styles.itemContainer}>
                 <View style={styles.deckTitleContainer}>
                   <Text style={styles.deckTitle}>{item.title} </Text>
@@ -104,8 +104,8 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   arrowContainer: {
-    marginTop: 7,
-    marginRight:-20
+    alignItems: 'flex-end',
+    justifyContent: 'center',
   },
   deleteBtnContainer: {
     alignItems: 'center',
@@ -127,7 +127,8 @@ const styles = StyleSheet.create({
   itemContainer:{
     flexDirection: 'row',
     justifyContent: 'space-between',
-    width: 0.8*width
+    width: 0.8*width,
+    marginLeft: 5
   },
   deckTitleContainer: {
   },

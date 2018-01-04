@@ -85,7 +85,7 @@ class Quiz extends Component {
                 <Text style={styles.endBtnTxt}>Restart Quiz</Text>
                 </View>
               </TouchableOpacity>
-              <TouchableOpacity style={styles.endBtn} onPress={()=>this.props.navigation.navigate('DeckDetail', {id:this.id,title:this.props.deckList[this.id].title})}>
+              <TouchableOpacity style={styles.endBtn} onPress={()=>{this.props.navigation.goBack()} }>
                 <View style={styles.inBtn}>
                 <MaterialIcons name="menu" size={20} color={palette.blue} />
                 <Text style={styles.endBtnTxt}>Back to {this.props.deckList[this.id].title}</Text>

@@ -51,7 +51,7 @@ class DeckDetail extends Component {
         </View>
         <View style={styles.btnContainer}>
           
-          <TouchableOpacity onPress={this.handleQuizStart.bind(this,id,numCards)}
+          <TouchableOpacity onPress={()=>this.handleQuizStart(id,numCards)}
             style={styles.btn}>
             <View style={styles.inBtn}>
               <Entypo name='controller-play' size={15} color={palette.blue} />

@@ -13,27 +13,29 @@ class AddCard extends Component {
   parentId = this.props.navigation.state.params.id
 
   state={
-    q:"",
-    a:""
+    question:"",
+    answer:""
   }
 
   handleSubmit = (evt) => {
     evt.preventDefault()
-    if(this.state.q && this.state.a) {
+    if(this.state.question && this.state.answer) {
       const id = generateId()
       const tempCard = {
-        q: this.state.q,
-        answer: this.state.a,
+        q: this.state.question,
+        answer: this.state.answer,
         parentId: this.parentId,
         id
       }
       this.props.createCard(tempCard)
-      this.setState({q:'',a:''})
+      this.props.navigation.goBack()
+      this.setState({question:'',answer:''})
     }
   }
 
   render() {
     const title = this.props.navigation.state.params.title
+
     return (
        <KeyboardAvoidingView behavior="padding" style={styles.window}>
         <View style={styles.createCardContainer}>
@@ -44,16 +46,16 @@ class AddCard extends Component {
             <Text>Question:</Text>
           </View>
           <TextInput
-          value={this.state.q}
+          value={this.state.question}
           style={styles.input}
-          onChangeText={(text)=>{this.setState({q:text})}}/>
+          onChangeText={(text)=>{this.setState({question:text})}}/>
           <View style={styles.inputType}>
             <Text>Answer:</Text>
           </View>
           <TextInput
-          value={this.state.a}
+          value={this.state.answer}
           style={styles.input}
-          onChangeText={(text)=>{this.setState({a:text})}}/>
+          onChangeText={(text)=>{this.setState({answer:text})}}/>
         </View>
         <View style={styles.btnContainer}>
           <TouchableOpacity onPress={this.handleSubmit} style={styles.submitBtn}>
@@ -86,8 +88,8 @@ const styles= StyleSheet.create({
     marginVertical: 5
   },
   createCardContainer : {
-    height: 0.1*height,
-    marginBottom: 10,
+    // height: 0.1*height,
+    // marginBottom: 10,
     alignItems: 'center',
     justifyContent: "flex-end",
     marginTop: 0.1*height,
