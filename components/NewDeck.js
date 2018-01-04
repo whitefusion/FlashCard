@@ -17,7 +17,6 @@ class NewDeck extends Component {
     evt.preventDefault()
     if(this.state.text){
       const tempId = generateId()
-      console.log(tempId)
       const tempDeck = {}
       tempDeck[tempId] = {
         id:tempId,
@@ -26,7 +25,10 @@ class NewDeck extends Component {
         cards: []
       }
       this.props.createDeck(tempDeck)
-      this.setState({text: ""})
+      .then((res)=>{
+        this.props.navigation.navigate('DeckDetail',{id:tempId,title:this.state.text})
+      })
+      .then(()=>{this.setState({text: ""})})
     }
   }
   
