@@ -12,6 +12,8 @@ The app will automatically generate a quiz that asks questions created by user, 
 ### Folder structure
 ```
 - actions
+  card_actions.js
+  deck_actions.js
   index.js
 - components
   AddCard.js
