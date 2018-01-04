@@ -37,8 +37,8 @@ yarn.lock
 ```
 
 ### Install and Launch
-1. Install dependency: Run `npm install`  int root folder.  </br>
+1. Install dependency: Run `yarn install`  int root folder.  </br>
 2. run `yarn start` and choose to test on either Android or IOS
 
-### PS
+### P.S.
 - The Android version is tested on Android Studio with a virtual device
