@@ -3,6 +3,9 @@ This is a react native application that can run on both IOS and Android. <br/>
 The app essentially provide a question-collect api that allows user to create a "deck" (question list) composed of "card" (question). <br/>
 The app will automatically generate a quiz that asks questions created by user, which can help user revise these questions.
 
+![](preview/ios_pre.png)
+![](preview/android_pre.png)
+
 ### Functionality
 - Add/Remove deck
 - Add/Remove a single card
